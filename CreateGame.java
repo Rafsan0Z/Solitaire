@@ -9,8 +9,13 @@ public class CreateGame {
     static ArrayList<String> diamonds = new ArrayList<>();
 
     static ArrayList<ArrayList> deck = new ArrayList<>();
-    //static ArrayList<String> deck_symbols = new ArrayList<>();
 
+
+    static CardList<Card> Hearts = new CardList<>("H");
+    static CardList<Card> Clubs = new CardList<>("C");
+    static CardList<Card> Spade = new CardList<>("S");
+    static CardList<Card> Diamonds = new CardList<>("D");
+    static ArrayList<CardList> Deck = new ArrayList<>();
 
     public static void main(String args[]){
 
@@ -19,23 +24,30 @@ public class CreateGame {
         deck.add(spade);
         deck.add(diamonds);
 
-        hearts.add("h");
-        clubs.add("c");
-        spade.add("s");
-        diamonds.add("d");
+        Deck.add(Hearts);
+        Deck.add(Clubs);
+        Deck.add(Spade);
+        Deck.add(Diamonds);
+
+        // hearts.add("h");
+        // clubs.add("c");
+        // spade.add("s");
+        // diamonds.add("d");
 
         createHand();
 
-        for(int i = 0; i < 14; i++){
+        for(int i = 0; i < 13; i++){
             //System.out.println( deck.forEach(type -> type.get(i).toString() ));
 
             String line = "";
 
             for(int j = 0; j < 4; j++){
 
-                line += deck.get(j).get(i);
-                if(j == 3) line += "\n";
-                else line += "      ";
+                // line += Deck.get(j).get(i);
+                // if(j == 3) line += "\n";
+                // else line += "      ";
+
+                line += Deck.get(j).get(i) + "\n\n";
 
             }
 
@@ -43,33 +55,51 @@ public class CreateGame {
 
         }
 
+        
 
     }
 
     private static void createHand(){
 
-        for(int i = 1; i < 14; i++){
+
+        int limit = 13;
+        for(int i = 0; i < limit; i++){
 
             switch (i) {
-                case 1:
-                    deck.forEach(type -> type.add("A" + "_" + type.get(0) ));
+                case 0:
+
+                    Deck.forEach(type -> type.add(new Card(type.getHand(), "A")) );
+
+                    deck.forEach(type -> type.add("A"  ));
                     break;
                 
+                case 10:
+
+                    Deck.forEach(type -> type.add(new Card(type.getHand(), "J")) );
+
+                    deck.forEach(type -> type.add("J"  ));
+                    break;
+
                 case 11:
-                    deck.forEach(type -> type.add("J" + "_" + type.get(0) ));
+
+                    Deck.forEach(type -> type.add(new Card(type.getHand(), "Q")) );
+
+                    deck.forEach(type -> type.add("Q"  ));
                     break;
 
                 case 12:
-                    deck.forEach(type -> type.add("Q" + "_" + type.get(0) ));
-                    break;
 
-                case 13:
-                    deck.forEach(type -> type.add("K" + "_" + type.get(0) ));
+                    Deck.forEach(type -> type.add(new Card(type.getHand(), "K")) );
+
+                    deck.forEach(type -> type.add("K"  ));
                     break;
 
                 default:
-                    String entry = "" + i;
-                    deck.forEach(type -> type.add( entry + "_" + type.get(0) ));
+                    String entry = "" + (i+1);
+
+                    Deck.forEach(type -> type.add(new Card(type.getHand(), entry)) );
+
+                    deck.forEach(type -> type.add( entry  ));
                     break;
             }
 
