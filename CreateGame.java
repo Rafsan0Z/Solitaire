@@ -67,12 +67,39 @@ public class CreateGame {
 
         });
 
-        redCards.forEach(type -> System.out.println(type.toString()));
-        blackCards.forEach(type -> System.out.println(type.toString()));
+        //redCards.forEach(type -> System.out.println(type.toString()));
+        //blackCards.forEach(type -> System.out.println(type.toString()));
         
-        ArrayList<CardList> slots = new ArrayList<>(8);
+        ArrayList<CardList<Card>> slots = new ArrayList<>(8);
+        slots.add(new CardList<Card>());
 
-        
+        //Lets fill slot 1
+        int size = 0;
+
+        while(size <= 8){
+
+            if(size == 0) {
+                slots.get(0).add(redCards.get(0));
+                redCards.remove(0);
+            }
+            else {
+
+                if(slots.get(0).getLast().getColor() == "R"){
+                    slots.get(0).add(blackCards.get(1));
+                    blackCards.remove(1);
+                }
+                else{
+                    slots.get(0).add(redCards.get(1));
+                    redCards.remove(1);
+                }
+
+            }
+
+            size = slots.get(0).size();
+            //System.out.println(size);
+        }
+
+        slots.get(0).forEach(type -> System.out.println(type.toString()));
 
     }
 

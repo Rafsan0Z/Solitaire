@@ -33,5 +33,7 @@ public class Card {
         return result;
 
     }
+
+    public String getColor(){return color;}
     
 }
