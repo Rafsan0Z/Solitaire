@@ -3,17 +3,46 @@ public class Card {
     String hand;
     String value;
     String color;
+    int location;
 
     public Card(String hand, String value){
         this.hand = hand;
         this.value = value;
         this.color = "B";
+        setLocation();
     }
 
     public Card(String hand, String value, String color){
         this.hand = hand;
         this.value = value;
         this.color = color;
+        setLocation();
+    }
+
+    private void setLocation(){
+
+        switch (value) {
+            case "A":
+                location = 0;
+                break;
+
+            case "J":
+                location = 10;
+                break;
+            
+            case "Q":
+                location = 11;
+                break;
+            
+            case "K":
+                location = 12;
+                break;
+
+            default:
+                location = Integer.parseInt(value) - 1;
+                break;
+        }
+
     }
 
     public String toString(){
