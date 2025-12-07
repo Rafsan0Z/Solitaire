@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class CardList<E> extends ArrayList<E>{
     
-    String hand;
+    // String hand;
 
-    public CardList(String hand){
+    // public CardList(String hand){
 
-        super();
-        this.hand = hand;
+    //     super();
+    //     this.hand = hand;
 
-    }
+    // }
 
     public CardList(){
         super();
@@ -19,9 +19,9 @@ public class CardList<E> extends ArrayList<E>{
         super(size);
     }
 
-    public String getHand() {return hand;}
+    //public String getHand() {return hand;}
 
-    public String getColor() {return color;}
+    //public String getColor() {return color;}
 
     public String toString(){
 
