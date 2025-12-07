@@ -8,7 +8,8 @@ public class Card {
     public Card(String hand, String value){
         this.hand = hand;
         this.value = value;
-        this.color = "B";
+        if (hand == "H" || hand == "D") this.color = "R";
+        else this.color = "B";
         setLocation();
     }
 
@@ -43,6 +44,14 @@ public class Card {
                 break;
         }
 
+    }
+
+    public String getValue(){
+        return this.value;
+    }
+
+    public String getHand(){
+        return this.hand;
     }
 
     public String toString(){

@@ -38,24 +38,7 @@ public class CreateGame {
 
         createHand();
 
-        // for(int i = 0; i < 4; i++){
-        //     //System.out.println( deck.forEach(type -> type.get(i).toString() ));
-
-        //     String line = "";
-
-        //     for(int j = 0; j < 13; j++){
-
-        //         // line += Deck.get(j).get(i);
-        //         // if(j == 3) line += "\n";
-        //         // else line += "      ";
-
-        //         line += Deck.get(i).get(j) + "\n\n";
-
-        //     }
-
-        //     System.out.println(line);
-
-        // }
+        Deck.forEach(type -> System.out.println(type.toString()));
 
         CardList<Card> redCards = new CardList<>();
         CardList<Card> blackCards = new CardList<>();
