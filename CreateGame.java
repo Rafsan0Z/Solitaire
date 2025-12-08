@@ -15,7 +15,7 @@ public class CreateGame {
     static HandList<Card> Clubs = new HandList<>("C");
     static HandList<Card> Spade = new HandList<>("S");
     static HandList<Card> Diamonds = new HandList<>("D");
-    static ArrayList<HandList> Deck = new ArrayList<>();
+    static ArrayList<HandList<Card>> Deck = new ArrayList<>();
 
     static ArrayList<CardList> Hands = new ArrayList<>();
 
@@ -40,18 +40,31 @@ public class CreateGame {
 
         Deck.forEach(type -> System.out.println(type.toString()));
 
-        // CardList<Card> redCards = new CardList<>();
-        // CardList<Card> blackCards = new CardList<>();
+        CardList<Card> redCards = new CardList<>();
+        CardList<Card> blackCards = new CardList<>();
 
-        // Deck.forEach(type -> {
+        Deck.forEach(type -> {
 
-        //     if(type.getColor() == "B") blackCards.addAll(type);
-        //     else if (type.getColor() == "R") redCards.addAll(type);
+            type.forEach(card -> {
 
-        // });
+                if (card.getColor() == "B") blackCards.add(card);
+                else if (card.getColor() == "R") redCards.add(card);
 
-        //redCards.forEach(type -> System.out.println(type.toString()));
-        //blackCards.forEach(type -> System.out.println(type.toString()));
+            }); 
+
+
+             //if(type.getColor() == "B") blackCards.addAll(type);
+             //else if (type.getColor() == "R") redCards.addAll(type);
+
+        });
+
+        System.out.println("RED CARDS BELOW:");
+
+        System.out.println(redCards.toString());
+
+        System.out.println("BLACK CARDS BELOW:");
+
+        System.out.println(blackCards.toString());
         
         // ArrayList<CardList<Card>> slots = new ArrayList<>(8);
         // slots.add(new CardList<Card>());
