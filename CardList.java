@@ -19,9 +19,11 @@ public class CardList<E extends Card> extends ArrayList<E>{
         super(size);
     }
 
-    //public String getHand() {return hand;}
+    public Card findByLocation(int location){
 
-    //public String getColor() {return color;}
+        return this.get(location);
+
+    }
 
     public String toString(){
 

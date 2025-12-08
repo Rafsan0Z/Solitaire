@@ -2,39 +2,18 @@ import java.util.ArrayList;
 
 public class CreateGame {
 
-    
-    // static ArrayList<String> hearts = new ArrayList<>();
-    // static ArrayList<String> clubs = new ArrayList<>(); 
-    // static ArrayList<String> spade = new ArrayList<>();
-    // static ArrayList<String> diamonds = new ArrayList<>();
-
-    // static ArrayList<ArrayList> deck = new ArrayList<>();
-
-
     static HandList<Card> Hearts = new HandList<>("H");
     static HandList<Card> Clubs = new HandList<>("C");
     static HandList<Card> Spade = new HandList<>("S");
     static HandList<Card> Diamonds = new HandList<>("D");
     static ArrayList<HandList<Card>> Deck = new ArrayList<>();
 
-    static ArrayList<CardList> Hands = new ArrayList<>();
-
     public static void main(String args[]){
-
-        // deck.add(hearts);
-        // deck.add(clubs);
-        // deck.add(spade);
-        // deck.add(diamonds);
 
         Deck.add(Hearts);
         Deck.add(Clubs);
         Deck.add(Spade);
         Deck.add(Diamonds);
-
-        // hearts.add("h");
-        // clubs.add("c");
-        // spade.add("s");
-        // diamonds.add("d");
 
         createHand();
 
@@ -52,10 +31,6 @@ public class CreateGame {
 
             }); 
 
-
-             //if(type.getColor() == "B") blackCards.addAll(type);
-             //else if (type.getColor() == "R") redCards.addAll(type);
-
         });
 
         System.out.println("RED CARDS BELOW:");
@@ -66,36 +41,30 @@ public class CreateGame {
 
         System.out.println(blackCards.toString());
         
-        // ArrayList<CardList<Card>> slots = new ArrayList<>(8);
-        // slots.add(new CardList<Card>());
+        ArrayList<CardList<Card>> slots = new ArrayList<>(8);
+        slots.add(new CardList<>());
+        slots.add(new CardList<>());
 
-        // //Lets fill slot 1
-        // int size = 0;
+        slots.get(0).add(blackCards.get(0));
+        slots.get(1).add(redCards.get(0));
 
-        // while(size <= 8){
+        int size = slots.get(0).size();
 
-        //     if(size == 0) {
-        //         slots.get(0).add(redCards.get(0));
-        //         redCards.remove(0);
-        //     }
-        //     else {
+        while(size <= 8){
 
-        //         if(slots.get(0).getLast().getColor() == "R"){
-        //             slots.get(0).add(blackCards.get(1));
-        //             blackCards.remove(1);
-        //         }
-        //         else{
-        //             slots.get(0).add(redCards.get(1));
-        //             redCards.remove(1);
-        //         }
+            int lastValue = slots.get(0).getLast().getLocation();
 
-        //     }
+            Card nextCard;
 
-        //     size = slots.get(0).size();
-        //     //System.out.println(size);
-        // }
+            if (slots.get(0).getLast().getColor() == "R") nextCard = blackCards.get(lastValue + 1);
+            else nextCard = redCards.get(lastValue + 1);
 
-        // slots.get(0).forEach(type -> System.out.println(type.toString()));
+            slots.get(0).add(nextCard);
+            size = slots.get(0).size();
+        }
+
+        System.out.println(slots.get(0).toString());
+
 
     }
 
@@ -110,28 +79,24 @@ public class CreateGame {
 
                     Deck.forEach(type -> type.add(new Card(type.getHand(), "A" )) );
 
-                    //deck.forEach(type -> type.add("A"  ));
                     break;
                 
                 case 10:
 
                     Deck.forEach(type -> type.add(new Card(type.getHand(), "J" )) );
 
-                    //deck.forEach(type -> type.add("J"  ));
                     break;
 
                 case 11:
 
                     Deck.forEach(type -> type.add(new Card(type.getHand(), "Q" )) );
 
-                    //deck.forEach(type -> type.add("Q"  ));
                     break;
 
                 case 12:
 
                     Deck.forEach(type -> type.add(new Card(type.getHand(), "K" )) );
 
-                    //deck.forEach(type -> type.add("K"  ));
                     break;
 
                 default:
@@ -139,7 +104,6 @@ public class CreateGame {
 
                     Deck.forEach(type -> type.add(new Card(type.getHand(), entry )) );
 
-                    //deck.forEach(type -> type.add( entry  ));
                     break;
             }
 
