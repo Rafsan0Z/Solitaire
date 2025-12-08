@@ -27,8 +27,6 @@ public class CardList<E extends Card> extends ArrayList<E>{
 
         while(index < length && result == null){
 
-            //System.out.println(this.get(index).toString());
-            //System.out.println(this.get(index).getLocation());
             if(this.get(index).getLocation() == location) result = this.get(index);
             index++;
 

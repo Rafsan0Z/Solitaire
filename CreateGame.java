@@ -41,29 +41,51 @@ public class CreateGame {
 
         System.out.println(blackCards.toString());
         
-        ArrayList<CardList<Card>> slots = new ArrayList<>(8);
+        ArrayList<CardList<Card>> slots = new ArrayList<>(4);
+        slots.add(new CardList<>());
+        slots.add(new CardList<>());
         slots.add(new CardList<>());
         slots.add(new CardList<>());
 
-        slots.get(0).add(blackCards.findByLocation(12));
-        slots.get(1).add(redCards.findByLocation(12));
+        //slots.get(0).add(blackCards.findByLocation(12));
+        //slots.get(1).add(redCards.findByLocation(12));
 
         System.out.println(slots.get(0).toString());
 
         int size = slots.get(0).size();
+        int turn = 0;
         //int lastValue = 12;
 
         int currSlot = 0;
-        while(size < 13 && currSlot < 2){
+        while(size < 13 && currSlot < 4){
 
-            int lastValue = slots.get(currSlot).getLast().getLocation();
+            int lastValue = size == 0 ? 13 : slots.get(currSlot).getLast().getLocation();
 
-            Card nextCard;
+            Card nextCard = null;
 
-            System.out.println(slots.get(currSlot).getLast().getColor() + "||" + lastValue);
+            //if (size != 0) System.out.println(slots.get(currSlot).getLast().getColor() + "||" + lastValue);
+            //else System.out.println("NULL||" + lastValue);
 
-            if (slots.get(currSlot).getLast().getColor() == "R") nextCard = blackCards.findByLocation(lastValue - 1);
-            else nextCard = redCards.findByLocation(lastValue - 1);
+            if (size == 0){
+                if (turn == 0){
+                    nextCard = blackCards.findByLocation(lastValue - 1);
+                    blackCards.remove(nextCard);
+                    turn = 1;
+                }
+                else if(turn == 1){
+                    nextCard = redCards.findByLocation(lastValue - 1);
+                    redCards.remove(nextCard);
+                    turn = 0;
+                }
+            }
+            else if (slots.get(currSlot).getLast().getColor() == "R") {
+                nextCard = blackCards.findByLocation(lastValue - 1);
+                blackCards.remove(nextCard);
+            }
+            else {
+                nextCard = redCards.findByLocation(lastValue - 1);
+                redCards.remove(nextCard);
+            }
 
             if (nextCard != null) slots.get(currSlot).add(nextCard);
             size = slots.get(currSlot).size();
@@ -71,12 +93,17 @@ public class CreateGame {
                 size = 0;
                 currSlot++;
             }
-            System.out.println(size + "--" + currSlot);
+            //System.out.println(size + "--" + currSlot);
+            //if (currSlot == 1) System.out.println(slots.get(1).toString());
         }
 
-        System.out.println(slots.get(0).toString());
-        System.out.println(slots.get(1).toString());
+        //System.out.println(slots.get(0).toString());
+        //System.out.println(slots.get(1).toString());
 
+        slots.forEach(type -> System.out.println(type.toString()));
+
+        System.out.println("Black cards left: " + blackCards.size());
+        System.out.println("Red cards left: " + redCards.size());
 
     }
 
