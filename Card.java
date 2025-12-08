@@ -46,6 +46,8 @@ public class Card {
 
     }
 
+    public int getLocation(){return this.location;}
+
     public String getValue(){
         return this.value;
     }

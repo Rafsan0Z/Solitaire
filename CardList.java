@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CardList<E> extends ArrayList<E>{
+public class CardList<E extends Card> extends ArrayList<E>{
     
     // String hand;
 
@@ -30,20 +30,21 @@ public class CardList<E> extends ArrayList<E>{
         String result = "";
         String topString = "";
         String middleString = "";
+        String bottomString = "";
 
         while(index < total){
 
-            topString += "#" + this.get(index).getHand() + "#" + "  ";
-            middleString += " " + this.get(index).getValue() + " ";
+            Card c = this.get(index);
+            topString += "#" + c.getHand() + "#" + "   ";
+            middleString += " " + c.getValue() + ( c.getLocation() == 9 ? "   " : "    ");
+            bottomString += "#" + c.getColor() + "#" + "   ";
             index++;
 
         }
 
-        String bottomString = "###" + " ";
-
         result += topString + "\n";
         result += middleString + "\n";
-        result += bottomString.repeat(total) + "\n";
+        result += bottomString + "\n";
 
         return result;
 

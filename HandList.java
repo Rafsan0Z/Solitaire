@@ -1,4 +1,4 @@
-public class HandList<E> extends CardList<E>{
+public class HandList<E extends Card> extends CardList<E>{
 
     // All cards in such a list have the same hand
     String hand;
@@ -9,6 +9,8 @@ public class HandList<E> extends CardList<E>{
         this.hand = hand;
 
     }
+
+    public String getHand(){return this.hand;}
 
     
 }
