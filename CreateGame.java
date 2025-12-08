@@ -47,24 +47,16 @@ public class CreateGame {
         slots.add(new CardList<>());
         slots.add(new CardList<>());
 
-        //slots.get(0).add(blackCards.findByLocation(12));
-        //slots.get(1).add(redCards.findByLocation(12));
-
         System.out.println(slots.get(0).toString());
 
         int size = slots.get(0).size();
         int turn = 0;
-        //int lastValue = 12;
-
         int currSlot = 0;
         while(size < 13 && currSlot < 4){
 
             int lastValue = size == 0 ? 13 : slots.get(currSlot).getLast().getLocation();
 
             Card nextCard = null;
-
-            //if (size != 0) System.out.println(slots.get(currSlot).getLast().getColor() + "||" + lastValue);
-            //else System.out.println("NULL||" + lastValue);
 
             if (size == 0){
                 if (turn == 0){
@@ -97,13 +89,47 @@ public class CreateGame {
             //if (currSlot == 1) System.out.println(slots.get(1).toString());
         }
 
-        //System.out.println(slots.get(0).toString());
-        //System.out.println(slots.get(1).toString());
-
         slots.forEach(type -> System.out.println(type.toString()));
 
         System.out.println("Black cards left: " + blackCards.size());
         System.out.println("Red cards left: " + redCards.size());
+
+        ArrayList<CardList<Card>> emptySlot = new ArrayList<>(4);
+        emptySlot.add(new CardList<>());
+        emptySlot.add(new CardList<>());
+        emptySlot.add(new CardList<>());
+        emptySlot.add(new CardList<>());
+
+        ArrayList<Integer> randList = new ArrayList<>(4);
+        refillRand(randList);
+
+        int level = 12;
+        //int left = 4;
+
+        while(!randList.isEmpty()){
+
+            int pick = (int)(Math.random() * (randList.size() ));
+            int index = randList.get(pick);
+            System.out.println(index);
+            
+            Card swap = slots.get(index).removeLast();
+
+            int pick2 = (int)(Math.random() * randList.size());
+            int index2 = randList.get(pick2);
+
+            emptySlot.get(index2).add(swap);
+
+            if(slots.get(index).isEmpty()){
+                randList.remove((Integer) index);
+            }
+
+            // if (randList.isEmpty()) {
+            //     level--;
+            //     refillRand(randList);
+            // }
+        }
+
+        emptySlot.forEach(type -> System.out.println(type.toString()));
 
     }
 
@@ -150,4 +176,11 @@ public class CreateGame {
 
     }
     
+    private static void refillRand(ArrayList<Integer> randList){
+        randList.add(0);
+        randList.add(1);
+        randList.add(2);
+        randList.add(3);
+    }
+
 }
